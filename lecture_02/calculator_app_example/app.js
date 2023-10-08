@@ -11,8 +11,8 @@ import prompt from 'prompt';
 
 function getInfo() {
   prompt.start();
-
-  const operation = {
+  // 这是啥？create an object？ 
+  const operation = { 
     name: 'operation',
     description: 'Which operation do you want to do?',
     type: 'string', // Specify the type of input to expect.
@@ -32,6 +32,13 @@ function getInfo() {
     description: 'What is the second number?',
     type: 'number',
     required: true
+  };
+
+  const num3Prompt = {
+    name: "num3",
+    description: "What is the third number?",
+    type:"number",
+    required:true
   };
 
   const quitPrompt = {

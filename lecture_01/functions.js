@@ -1,7 +1,8 @@
+// a function without parameter
 function myFunction() {
   return "I'm a global function";
 }
-
+// call the function and ? its result
 console.log(myFunction());
 
 function printThisMessage(message) {

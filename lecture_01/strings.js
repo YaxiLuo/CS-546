@@ -28,11 +28,12 @@ var varString = "I'm a string, and I am function scoped";
 let myConcatString = letString + ' ' + varString;
 console.log(myConcatString);
 
+// hw1
+let string = "a, b, c, d";
+let splitString = string.split(",")
+console.log(splitString);
+
 let myConcatString2 = `I am letstring: ${letString} 
-
-
-
-
 
 
 
