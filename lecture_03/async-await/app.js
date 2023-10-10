@@ -6,17 +6,17 @@ const promptPromise = bluebird.promisifyAll(prompt);
 
 // We declare an async function that we will run below, so that we may use await.
 async function main() {
-  const getFileOperation = {
+  const getFileOperation = { // 设定好输入提示值
     name: 'fileName',
     description: 'What file do you want to open?'
   };
 
   // Gets result of user input
   let promptResult = await promptPromise.getAsync([getFileOperation]);
-  console.log(promptResult);
+  console.log(promptResult); // print out the result
   const fileName = promptResult.fileName;
 
-  if (!fileName) {
+  if (!fileName) { // Edge cases
     throw 'Need to provide a file name';
   }
 
