@@ -3,11 +3,11 @@ import postData from './posts.js';
 import {dbConnection, closeConnection} from './mongoConnection.js';
 
 //lets drop the database each time this is run
-const db = await dbConnection();
-await db.dropDatabase();
+const db = await dbConnection(); // very important!
+await db.dropDatabase(); // very important!
 
 //defining these here so I can use them later in the function
-let sasha = undefined;
+let sasha = undefined; //在try-catch block外声明变量，方便之后使用
 let max = undefined;
 let porkChop = undefined;
 let maxPost = undefined;
@@ -16,7 +16,7 @@ let sashaPost = undefined;
 
 console.log("Let's add some dogs!");
 
-try {
+try { // trim 'Sasha   '
   sasha = await dogData.addDog('Sasha   ', ['Cheagle', 'Chihuaha', 'Beagle']);
   console.log('Sasha the dog has been added, now she will blog!');
   console.log(sasha);
@@ -124,7 +124,7 @@ console.log("Let's update a dog");
 
 try {
   const updatedSashasName = await dogData.updateDog(
-    sasha._id.toString(),
+    sasha._id.toString(), // get sasha's name and convert it into a
     'Dharma',
     ['Husky', 'American Eskimo']
   );
@@ -145,6 +145,8 @@ try {
 
 console.log("Now let's test some dog cases that fail");
 
+
+// try as hard as you can to break it
 //dog method fails
 try {
   const fail = await dogData.addDog('   ', ['Husky']);
@@ -196,6 +198,7 @@ try {
 
 try {
   const fail1 = await dogData.removeDog(123);
+  // invalid object id
 } catch (e) {
   console.log(e);
 }
@@ -240,7 +243,7 @@ try {
 try {
   const fail1 = await postData.addPost(
     'The time my band opened for Stone Sour',
-    "It was back in 2007 at the Chance theatre in Poughkeepsie NY.  I hung out mostly with Stone Sour's drummer Roy...... Corey Taylor also offered me a sip of his drink which was straight Southern Comfort.. Of course I took it even though I hated Southern Comfort.  When Corey offers you a drink, you take it!......",
+    "It was back in 2007 at the Chance theatre in Poughkeepsie NY. I hung out mostly with Stone Sour's drummer Roy...... Corey Taylor also offered me a sip of his drink which was straight Southern Comfort.. Of course I took it even though I hated Southern Comfort.  When Corey offers you a drink, you take it!......",
     123
   );
 } catch (e) {
@@ -271,7 +274,7 @@ try {
 
 try {
   const fail1 = await postData.addPost(
-    '    ',
+    '    ', // title is an empty string
     'this will fail because of first input',
     123
   );
@@ -291,5 +294,5 @@ try {
   console.log(e);
 }
 
-await closeConnection();
+await closeConnection(); // very important!!!
 console.log('Done!');

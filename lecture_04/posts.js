@@ -6,9 +6,9 @@ const exportedMethods = {
   async getPostById(id) {
     if (!id) throw 'You must provide an id to search for';
     if (typeof id !== 'string') throw 'Id must be a string';
-    if (id.trim().length === 0)
-      throw 'id cannot be an empty string or just spaces';
     id = id.trim();
+    if (id.length === 0) // id already be trimed
+      throw 'id cannot be an empty string or just spaces';
     if (!ObjectId.isValid(id)) throw 'invalid object ID';
     const postCollection = await posts();
     const post = await postCollection.findOne({_id: new ObjectId(id)});
@@ -67,7 +67,9 @@ const exportedMethods = {
       throw 'id cannot be an empty string or just spaces';
     id = id.trim();
     if (!ObjectId.isValid(id)) throw 'invalid object ID';
-    const postCollection = await posts();
+    // delete it
+    const postCollection = await posts(); // posts is a collection from mongoDB
+    // get the post collection
     const deletionInfo = await postCollection.findOneAndDelete({
       _id: new ObjectId(id)
     });
@@ -77,6 +79,7 @@ const exportedMethods = {
     }
     return {postTitle: deletionInfo.value.title, deleted: true};
   },
+
   async updatePost(id, title, body, posterId) {
     if (!id) throw 'You must provide an id to search for';
     if (typeof id !== 'string') throw 'Id must be a string';

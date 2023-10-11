@@ -10,8 +10,9 @@ export const dbConnection = async () => {
     _db = _connection.db(mongoConfig.database);
   }
 
-  return _db;
+  return _db; // return database
 };
+
 export const closeConnection = async () => {
   await _connection.close();
 };

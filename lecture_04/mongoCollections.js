@@ -16,5 +16,6 @@ const getCollectionFn = (collection) => {
 };
 
 /* Now, you can list your collections here: */
-export const posts = getCollectionFn('posts');
+export const posts = getCollectionFn('posts'); // collection 到底是干啥的
 export const dogs = getCollectionFn('dogs');
+// export const events = getCollectionFn('event');
