@@ -9,10 +9,10 @@ const exportedMethods = {
     return await postCollection.find({}).toArray();
   },
   async getPostById(id) {
-    id = validation.checkId(id);
+    id = validation.checkId(id); // check if id is valid
     const postCollection = await posts();
-    const post = await postCollection.findOne({_id: ObjectId(id)});
-
+    const post = await postCollection.findOne({_id: new ObjectId(id)});
+    // why do we need to add new before the _id?
     if (!post) throw 'Error: Post not found';
     return post;
   },
