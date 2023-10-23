@@ -1,3 +1,4 @@
+// 这部分代码的含义是与express
 import express from 'express';
 const app = express();
 import configRoutesFunction from './routes/index.js';

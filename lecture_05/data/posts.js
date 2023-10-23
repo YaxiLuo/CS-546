@@ -5,14 +5,14 @@ import validation from './validation.js';
 
 const exportedMethods = {
   async getAllPosts() {
-    const postCollection = await posts();
+    const postCollection = await posts(); // 调取posts数据库
     return await postCollection.find({}).toArray();
   },
   async getPostById(id) {
     id = validation.checkId(id); // check if id is valid
     const postCollection = await posts();
     const post = await postCollection.findOne({_id: new ObjectId(id)});
-    // why do we need to add new before the _id?
+    // why do we need to add new before the _id? 使用new ObjectId(id)是将字符串id转换为ObjectId类型的过程。
     if (!post) throw 'Error: Post not found';
     return post;
   },
@@ -65,7 +65,7 @@ const exportedMethods = {
     };
     const postCollection = await posts();
     const updateInfo = await postCollection.findOneAndUpdate(
-      {_id: ObjectId(id)},
+      {_id: new ObjectId(id)},
       {$set: updatedPost},
       {returnDocument: 'after'}
     );
