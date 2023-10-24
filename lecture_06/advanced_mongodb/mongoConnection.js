@@ -1,7 +1,8 @@
 import {MongoClient} from 'mongodb';
 const settings = {
   mongoConfig: {
-    serverUrl: 'mongodb://localhost:27017/',
+    serverUrl: 'mongodb://127.0.0.1:27017/', 
+    // mongodb://localhost:27017 改成了
     database: 'movies'
   }
 };

@@ -143,7 +143,8 @@ const exportedMethods = {
     };
 
     let secondUpdate = {
-      $pull: {tags: oldTag}
+      $pull: {tags: oldTag} 
+      // pull this tags from the old tag
     };
     const postCollection = await posts();
     let updateOne = await postCollection.updateMany(findDocuments, firstUpdate);
@@ -151,7 +152,7 @@ const exportedMethods = {
       throw `Could not find any posts with old tag: ${oldTag}`;
     let updateTwo = await postCollection.updateMany(
       findDocuments,
-      secondUpdate
+      secondUpdate // pulling the tags from the array
     );
     if (updateTwo.modifiedCount === 0) throw [500, 'Could not update tags'];
     return await this.getPostsByTag(newTag);

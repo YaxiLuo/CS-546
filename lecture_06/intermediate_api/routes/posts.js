@@ -18,12 +18,14 @@ router
     //make sure there is something present in the req.body
     if (!blogPostData || Object.keys(blogPostData).length === 0) {
       return res
-        .status(400)
+        .status(400) 
         .json({error: 'There are no fields in the request body'});
     }
+
     //check all inputs, that should respond with a 400
     try {
       blogPostData.title = validation.checkString(blogPostData.title, 'Title');
+
       blogPostData.body = validation.checkString(blogPostData.body, 'Body');
       blogPostData.posterId = validation.checkId(
         blogPostData.posterId,
@@ -37,6 +39,7 @@ router
       }
     } catch (e) {
       return res.status(400).json({error: e});
+      
     }
 
     //insert the post
@@ -44,8 +47,10 @@ router
       const {title, body, tags, posterId} = blogPostData;
       const newPost = await postData.addPost(title, body, posterId, tags);
       res.json(newPost);
+      // 这里没有return，是为了防止程序崩溃
     } catch (e) {
       res.status(500).json({error: e});
+      // 这里没有return，是为了防止程序崩溃
     }
   });
 
