@@ -16,12 +16,13 @@ async function runSetup() {
   let docId = 0;
 
   const makeDoc = function (title, rating, released, director) {
-    return {
+    // 先
+    return { // 规划好的schema
       _id: ++docId,
       title: title,
       rating: rating,
       reviews: [],
-      cast: [],
+      cast: [], // 下面用inception.cast.push();
       info: {
         release: released,
         director: director
@@ -30,8 +31,9 @@ async function runSetup() {
   };
 
   const addReview = function (movie, title, comment, reviewer, rating) {
+    // movie, title, comment, must be added into the
     const newReview = {
-      _id: v4(),
+      _id: v4(), // schema is different from variable name 
       title: title,
       comment: comment,
       reviewer: reviewer,
@@ -81,7 +83,7 @@ async function runSetup() {
     'Shin Koyamada'
   );
 
-  const darkKnightRises = makeDoc(
+  const darkKnightRises = makeDoc( 
     'Batman: The Dark Knight Rises',
     5,
     2012,
@@ -167,7 +169,8 @@ async function runSetup() {
 
   await movieCollection.insertMany(listOfMovies);
 
-  return await JSON.stringify(movieCollection.find().toArray());
+  return JSON.stringify(movieCollection.find().toArray());
+  //'await' has no effect on the type of this expression.
 }
 
 // By exporting a function, we can run

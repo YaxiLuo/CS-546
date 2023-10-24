@@ -44,13 +44,14 @@ const exportedMethods = {
   async getAllMoviesSortedByTitleAsc() {
     const movieCollection = await advancedMovies();
     const movieList = await movieCollection.find({}).sort({title: 1}).toArray();
+    // sort ascending A to Z
     return movieList;
   },
   async getAllMoviesSortedByTitleDec() {
     const movieCollection = await advancedMovies();
     const movieList = await movieCollection
       .find({})
-      .sort({title: -1})
+      .sort({title: -1}) // sort descending
       .toArray();
     return movieList;
   },
@@ -71,10 +72,12 @@ const exportedMethods = {
     return movieList;
   },
   async getAllMoviesSortedByTitleAscYearDec() {
+    //new to old decending
     const movieCollection = await advancedMovies();
     const movieList = await movieCollection
       .find({})
-      .sort({title: 1, 'info.release': -1})
+      .sort({title: 1, 'info.release': -1}) 
+      // sort title ascendingly, info decendingly
       .toArray();
     return movieList;
   },
@@ -84,6 +87,7 @@ const exportedMethods = {
     const movieList = await movieCollection
       .find({})
       .sort({title: 1, 'info.release': 1})
+      // sort title and info ascendingly
       .toArray();
     return movieList;
   },
@@ -93,6 +97,7 @@ const exportedMethods = {
   async getAllMoviesSkipFirstTwo() {
     const movieCollection = await advancedMovies();
     const movieList = await movieCollection.find({}).skip(2).toArray();
+    // 
     return movieList;
   },
   //limit
@@ -106,6 +111,7 @@ const exportedMethods = {
   async getAllMoviesSkipFirstLimitThree() {
     const movieCollection = await advancedMovies();
     const movieList = await movieCollection.find({}).skip(2).limit(3).toArray();
+    // skip the first 2 and return limit 3 lists
     return movieList;
   },
 
@@ -157,7 +163,7 @@ const exportedMethods = {
     if (startingYear === undefined) throw 'You must give a starting year';
     const movieCollection = await advancedMovies();
     return await movieCollection
-      .find({'info.release': {$lt: startingYear}})
+      .find({'info.release': {$lt: startingYear}}) //less than starting year
       .toArray();
   },
 
@@ -166,7 +172,7 @@ const exportedMethods = {
     if (startingYear === undefined) throw 'You must give a starting year';
     const movieCollection = await advancedMovies();
     return await movieCollection
-      .find({'info.release': {$lte: startingYear}})
+      .find({'info.release': {$lte: startingYear}}) // less than or equal to the starting year
       .toArray();
   },
 
@@ -184,7 +190,7 @@ const exportedMethods = {
     if (startingYear === undefined) throw 'You must give a starting year';
     const movieCollection = await advancedMovies();
     return await movieCollection
-      .find({'info.release': {$gte: startingYear}})
+      .find({'info.release': {$gte: startingYear}}) //
       .toArray();
   },
 
@@ -215,7 +221,7 @@ const exportedMethods = {
     return await movieCollection
       .find({
         $or: [{'info.release': releaseYear}, {'info.director': directorName}]
-      })
+      }) // return the movie list at the specific released year regardless of other facts
       .toArray();
   },
 
@@ -276,9 +282,10 @@ const exportedMethods = {
     if (id === undefined) throw 'No id provided';
     if (newRating === undefined) throw 'no rating provided';
     const movieCollection = await advancedMovies();
-    // if the value is higher than newRating, it will change to newRating; otherwise, it
-    // will stay as is
+    // if the current value is higher than newRating, it will change to newRating; 
+    // otherwise, it will stay as is
     await movieCollection.updateOne({_id: id}, {$min: {rating: newRating}});
+    // assign a lower rating to the movie
 
     return await this.getMovie(id);
   },
@@ -313,17 +320,21 @@ const exportedMethods = {
       .toArray();
   },
 
+  // =======================
   //return JUST a single review without the movie information
+  //!!!!!!! return an object, not an array object!!!!!!!!
   async findByReviewIdReviewOnly(reviewId) {
     if (!reviewId) throw 'You must provide a name for the reviewer';
     const movieCollection = await advancedMovies();
     const foundReview = await movieCollection.findOne(
       {'reviews._id': reviewId},
       {projection: {_id: 0, 'reviews.$': 1}}
+      // one element match
     );
 
     console.log(foundReview.reviews);
-    return foundReview.reviews[0];
+    return foundReview.reviews[0]; 
+    // only return one object, not the array with several objects
   },
 
   // =================
@@ -360,6 +371,8 @@ const exportedMethods = {
     const movieCollection = await advancedMovies();
     // removes last
     await movieCollection.updateOne({_id: id}, {$pop: {cast: 1}});
+    // {cast 1}: remove the last element, 
+    // {cast -1}: remove the first element
 
     return await this.getMovie(id);
   },
