@@ -4,7 +4,7 @@ import {userData} from '../data/index.js';
 import validation from '../data/validation.js';
 
 router
-  .route('/:id')
+  .route('/:id') //定义了一个新的路由，其中的 :id 是一个路由参数，表示该部分的值可以变化。
   .get(async (req, res) => {
     try {
       req.params.id = validation.checkId(req.params.id);
@@ -22,7 +22,7 @@ router
   });
 
 router
-  .route('/')
+  .route('/') //使用 router 对象（来自 Express）定义了一个新的路由，其路径为 '/'。这通常代表一个应用或服务的根路径。
   .get(async (req, res) => {
     try {
       const userList = await userData.getAllUsers();
