@@ -1,7 +1,7 @@
 import {dbConnection, closeConnection} from '../config/mongoConnection.js';
 import users from '../data/users.js';
 import posts from '../data/posts.js';
-
+// 这里seed类似test，用于添加数据来测试
 const db = await dbConnection();
 await db.dropDatabase();
 
