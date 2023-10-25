@@ -54,7 +54,7 @@ const exportedMethods = {
     posterId = validation.checkId(posterId);
     const userThatPosted = await userData.getUserById(posterId);
 
-    let updatedPost = {
+    let updatedPost = { // 为什么要写成这种格式？
       title: title,
       body: body,
       poster: {
