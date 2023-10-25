@@ -1,10 +1,10 @@
 import {Router} from 'express';
-const router = Router();
+const router = Router(); // 建方法
 import {postData} from '../data/index.js';
 import validation from '../data/validation.js';
 
 router
-  .route('/:id')
+  .route('/:id') // 路径，翻译为"local.host/3000/:id
   .get(async (req, res) => {
     try {
       req.params.id = validation.checkId(req.params.id);

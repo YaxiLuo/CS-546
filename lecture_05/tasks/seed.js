@@ -35,4 +35,4 @@ const forth = await posts.addPost(
   aid
 );
 console.log('Done seeding database');
-await closeConnection();
+//await closeConnection();
