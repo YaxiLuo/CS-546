@@ -8,6 +8,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const staticDir = express.static(__dirname + '/public');
+// directory we need to make sure it is right 记得保持路径一致！
 
 const rewriteUnsupportedBrowserMethods = (req, res, next) => {
   // If the user posts to the server with a property called _method, rewrite the request's method
@@ -22,7 +23,7 @@ const rewriteUnsupportedBrowserMethods = (req, res, next) => {
   next();
 };
 
-app.use('/public', staticDir);
+app.use('/public', staticDir); // direct path + /public
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(rewriteUnsupportedBrowserMethods);

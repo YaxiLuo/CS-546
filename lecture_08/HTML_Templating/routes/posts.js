@@ -50,7 +50,7 @@ router
       }
     }
 
-    if (errors.length > 0) {
+    if (errors.length > 0) { // 检查是否有误
       const users = await userData.getAllUsers();
       res.render('posts/new', {
         errors: errors,
