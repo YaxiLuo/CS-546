@@ -1,9 +1,9 @@
-p {
+p { 
 	color: red;
 	font-weight: bold;
 }
 
-#paragraphWithID {
+#paragraphWithID { /*这里规范的格式只运用到<p id="paragraphWithID">中*/
 	color: blue;
 	font-weight: normal;
 }
@@ -12,12 +12,12 @@ h1 {
 	color: salmon;
 }
 
-div h1 {
+div h1 { /*这里规范的格式会运用到所有div h1上，除非特别声明*/
 	color: green;
 }
 
 p:first-child {
-	color: purple;
+	color: purple; /* it will cover the whole line */
 	font-weight: bolder;
 }
 
@@ -66,7 +66,7 @@ li {
 }
 
 #divColorBorder {
-	border-top: 3px solid red;
+	border-top: 3px solid red; /* size, */
 	border-bottom: 3px solid blue;
 	border-right: 3px dotted green;
 	border-left: 3px dashed salmon;
@@ -77,4 +77,8 @@ p.about,
 	color: cyan;
 	text-decoration: none;
 	font-weight: bold;
+}
+
+.no.bold {
+
 }
