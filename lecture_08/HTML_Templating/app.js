@@ -23,8 +23,8 @@ const rewriteUnsupportedBrowserMethods = (req, res, next) => {
   next();
 };
 
-app.use('/public', staticDir); // direct path + /public
-app.use(express.json());
+app.use('/public', staticDir); // 绝对路径+名字 direct path + /public
+app.use(express.json());// 连接express
 app.use(express.urlencoded({extended: true}));
 app.use(rewriteUnsupportedBrowserMethods);
 

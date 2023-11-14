@@ -20,19 +20,19 @@ router
   .post(async (req, res) => {
     const blogPostData = req.body;
     let errors = [];
-    try {
+    try { // 检查正误
       blogPostData.title = validation.checkString(blogPostData.title, 'Title');
     } catch (e) {
       errors.push(e);
     }
 
-    try {
+    try { // 检查正误
       blogPostData.body = validation.checkString(blogPostData.body, 'Body');
     } catch (e) {
       errors.push(e);
     }
 
-    try {
+    try { // 检查正误
       blogPostData.posterId = validation.checkId(
         blogPostData.posterId,
         'Poster ID'
@@ -43,7 +43,7 @@ router
 
     if (blogPostData.tags) {
       let tags = blogPostData.tags.split(',');
-      try {
+      try { // 检查正误
         blogPostData.tags = validation.checkStringArray(tags, 'Tags');
       } catch (e) {
         errors.push(e);

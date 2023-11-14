@@ -17,7 +17,7 @@
     </label>
     <select class="full-width-input" name="posterId" id="posterId">
       <option value="">Select User...</option>
-      {{#each users}}
+      {{#each users}} 
       <option value="{{_id}}">{{firstName}} {{lastName}}</option>
       {{/each}}
     </select>
@@ -29,7 +29,7 @@
     <button type="reset">Clear Form</button>
     {{!-- <input type="hidden" name='_method' value="PUT" /> --}}
   </form>
-  {{#if hasErrors}}
+  {{#if hasErrors}} /*报警系统*/
   <ul class="error-list">
     {{#each errors}}
     <li>
