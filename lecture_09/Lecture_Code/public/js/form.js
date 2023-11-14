@@ -51,7 +51,7 @@
     // We can store references to our elements; it's better to
     // store them once rather than re-query the DOM traversal each time
     // that the event runs.
-    const firstNumberElement = document.getElementById('number1');
+    const firstNumberElement = document.getElementById('number1'); // 为什么可以直接使用document？
     const secondNumberElement = document.getElementById('number2');
     const operationElement = document.getElementById('operation');
 

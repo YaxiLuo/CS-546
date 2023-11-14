@@ -1,5 +1,5 @@
 import {ObjectId} from 'mongodb';
-
+// like helper, use validation to make sure inputs are in the right form
 const exportedMethods = {
   checkId(id, varName) {
     if (!id) throw `Error: You must provide a ${varName}`;

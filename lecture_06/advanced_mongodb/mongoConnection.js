@@ -2,7 +2,7 @@ import {MongoClient} from 'mongodb';
 const settings = {
   mongoConfig: {
     serverUrl: 'mongodb://127.0.0.1:27017/', 
-    // mongodb://localhost:27017 改成了
+    // mongodb://localhost:27017 改成了 mongodb://127.0.0.1:27017/
     database: 'movies'
   }
 };
