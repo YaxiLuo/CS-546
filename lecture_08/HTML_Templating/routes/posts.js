@@ -182,7 +182,9 @@ router.route('/tag/:tag').get(async (req, res) => {
   }
   try {
     const postList = await postData.getPostsByTag(req.params.tag);
+    // get result here
     res.render('posts/index', {posts: postList});
+    //render(address, input pair)
   } catch (e) {
     res.status(400).json({error: e});
   }
