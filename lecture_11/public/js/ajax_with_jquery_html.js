@@ -21,6 +21,7 @@
         method: 'POST',
         url: '/api/todo/complete/html/' + currentId
       };
+      console.log(requestConfig);
 
       $.ajax(requestConfig).then(function (responseMessage) {
         let newElement = $(responseMessage);
